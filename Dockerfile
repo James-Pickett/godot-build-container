@@ -58,13 +58,3 @@ COPY ./edit-tres.sh /edit-tres.sh
 
 # make edit-tres.sh executable
 RUN chmod +x /edit-tres.sh
-
-# create editor_settings
-RUN export path_to_editor_settings=root/.config/godot/editor_settings-3.tres \
-    && mkdir -p $(dirname "$path_to_editor_settings") \
-    && touch $path_to_editor_settings \
-    && echo "[gd_resource type=\"EditorSettings\" format=2]" >> $path_to_editor_settings \
-    && echo "[resource]" >> $path_to_editor_settings \
-    && ./edit-tres.sh $path_to_editor_settings export/android/adb /opt/android-sdk-linux/platform-tools/adb \
-    && ./edit-tres.sh $path_to_editor_settings export/android/jarsigner /usr/lib/jvm/java-8-openjdk-amd64/bin/jarsigner \
-    && ./edit-tres.sh $path_to_editor_settings export/android/debug_keystore /usr/android-keys/debug.keystore
