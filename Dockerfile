@@ -56,6 +56,9 @@ RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/${GODOT_BU
 # copy edit-tres
 COPY ./edit-tres.sh /edit-tres.sh
 
+# make edit-tres.sh executable
+RUN chmod +x /edit-tres.sh
+
 # create editor_settings
 RUN export path_to_editor_settings=./editor_settings-3.tres \
     && mkdir -p $(dirname "$path_to_editor_settings") \
