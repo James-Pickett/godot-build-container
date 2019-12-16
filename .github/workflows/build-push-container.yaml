@@ -7,7 +7,7 @@ jobs:
       - uses: actions/checkout@master
       - uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: jaypickle/godot-build:${GITHUB_REF##*/}
+          name: godot-build:${GITHUB_REF##*/}
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           tag_names: true
