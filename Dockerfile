@@ -40,15 +40,18 @@ RUN cd /opt/android-sdk-linux/tools/bin \
 
 # download and unzip godot templates
 RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-stable_export_templates.tpz \
-    && mkdir /root/.cache \
-    && mkdir -p /root/.config/godot \
-    && mkdir -p /root/.local/share/godot/templates/${GODOT_VERSION}.stable \
     && unzip Godot_v${GODOT_VERSION}-stable_export_templates.tpz \
+    && mkdir -p /root/.local/share/godot/templates/${GODOT_VERSION}.stable \
     && mv templates/* /root/.local/share/godot/templates/${GODOT_VERSION}.stable \
     && rm -f Godot_v${GODOT_VERSION}-stable_export_templates.tpz
+
+# create link so github can access this easily from actions
+RUN mkdir -p /github/home/.local/share/godot/templates/${GODOT_VERSION}.stable \
+    && ls -s /root/.local/share/godot/templates/${GODOT_VERSION}.stable /github/home/.local/share/godot/templates/${GODOT_VERSION}.stable
 
 # download unzip godot
 RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/${GODOT_BUILD}.zip \
     && unzip ${GODOT_BUILD}.zip \
     && mv ${GODOT_BUILD} /usr/local/bin/godot \
     && rm -f ${GODOT_BUILD}.zip
+
