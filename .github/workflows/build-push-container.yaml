@@ -8,7 +8,7 @@ jobs:
       - name: build tag from branch name
         run: echo ::set-output name=tag::jaypickle/godot-build:${GITHUB_REF##*/}
         id: tag
-      - uses: elgohr/Publish-Docker-Github-Action@v2.10
+      - uses: elgohr/Publish-Docker-Github-Action@v2
         with:
           name: ${{ steps.tag.outputs.tag }}
           username: ${{ secrets.DOCKER_USERNAME }}
