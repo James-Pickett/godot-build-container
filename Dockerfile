@@ -45,10 +45,6 @@ RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${G
     && mv templates/* /root/.local/share/godot/templates/${GODOT_VERSION}.stable \
     && rm -f Godot_v${GODOT_VERSION}-stable_export_templates.tpz
 
-# create link so github actions can easily access
-RUN mkdir -p /github/home/.local/share/godot/ \
-    && ln -s /root/.local/share/godot/templates /github/home/.local/share/godot/
-
 # download unzip godot
 RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/${GODOT_BUILD}.zip \
     && unzip ${GODOT_BUILD}.zip \
