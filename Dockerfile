@@ -50,11 +50,5 @@ RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${G
 # download unzip godot
 RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/${GODOT_BUILD}.zip \
     && unzip ${GODOT_BUILD}.zip \
-    && mv ${GODOT_BUILD} /usr/local/bin/godot \   
+    && mv ${GODOT_BUILD} /usr/local/bin/godot \
     && rm -f ${GODOT_BUILD}.zip
-
-# copy edit-tres
-COPY ./edit-tres.sh /edit-tres.sh
-
-# make edit-tres.sh executable
-RUN chmod +x /edit-tres.sh
